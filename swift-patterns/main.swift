@@ -7,4 +7,4 @@
 
 import Foundation
 
-AbstractFactory().execute()
+ChainOfResponibility().execute()
