@@ -7,4 +7,4 @@
 
 import Foundation
 
-ChainOfResponibility().execute()
+Command01().execute()

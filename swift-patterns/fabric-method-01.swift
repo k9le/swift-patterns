@@ -1,5 +1,5 @@
 //
-//  fabric-method.swift
+//  fabric-method-01.swift
 //  swift-patterns
 //
 //  Created by Vasiliy Fedotov on 14.12.2024.
@@ -12,7 +12,7 @@ import Foundation
 /// Допустим, мы HRы и нам нужно проинтервьюить нового кандидата.
 /// Кандидаты могут быть разных профессий. Для каждой профессии свой набор интервьюеров.
 /// HR-менеджер использует разные фабрики интервьюеров для каждого из кандидатов
-class Candidate {
+private class Candidate {
     private let name: String
 
     init(withName name: String) {
@@ -24,35 +24,35 @@ class Candidate {
     }
 }
 
-protocol Interviewer {
+private protocol Interviewer {
     func interviewCandidate(_ candidate: Candidate)
 }
 
-class LanguageInterviewer: Interviewer {
+private class LanguageInterviewer: Interviewer {
     func interviewCandidate(_ candidate: Candidate) {
         print("Проверка на знание языка")
     }
 }
 
-final class AlgoInterviewer: Interviewer {
+private final class AlgoInterviewer: Interviewer {
     func interviewCandidate(_ candidate: Candidate) {
         print("Проверка на знание алгоритмов")
     }
 }
 
-final class SoftSkillInterviewer: Interviewer {
+private final class SoftSkillInterviewer: Interviewer {
     func interviewCandidate(_ candidate: Candidate) {
         print("Проверка на софт-скиллы")
     }
 }
 
-final class Manager: Interviewer {
+private final class Manager: Interviewer {
     func interviewCandidate(_ candidate: Candidate) {
         print("Собеседование с менеджером")
     }
 }
 
-final class InterviewerComposite: Interviewer {
+private final class InterviewerComposite: Interviewer {
     private let interviewers: [any Interviewer]
 
     init(interviewers: [any Interviewer]) {
@@ -66,11 +66,11 @@ final class InterviewerComposite: Interviewer {
     }
 }
 
-protocol InterviewerFactory {
+private protocol InterviewerFactory {
     func makeInterviewer() -> Interviewer
 }
 
-final class LinguistInterviewerFactory: InterviewerFactory {
+private final class LinguistInterviewerFactory: InterviewerFactory {
     func makeInterviewer() -> Interviewer {
         return InterviewerComposite(
             interviewers: [
@@ -82,7 +82,7 @@ final class LinguistInterviewerFactory: InterviewerFactory {
     }
 }
 
-final class AlgoritmistInterviewerFactory: InterviewerFactory {
+private final class AlgoritmistInterviewerFactory: InterviewerFactory {
     func makeInterviewer() -> Interviewer {
         return InterviewerComposite(
             interviewers: [
@@ -93,7 +93,7 @@ final class AlgoritmistInterviewerFactory: InterviewerFactory {
     }
 }
 
-final class CoderInterviewerFactory: InterviewerFactory {
+private final class CoderInterviewerFactory: InterviewerFactory {
     func makeInterviewer() -> Interviewer {
         return InterviewerComposite(
             interviewers: [
@@ -106,7 +106,7 @@ final class CoderInterviewerFactory: InterviewerFactory {
     }
 }
 
-class HiringManager {
+private class HiringManager {
     var interviewerFactory: InterviewerFactory!
 
     func makeInterview(_ candidate: Candidate) {
@@ -119,8 +119,7 @@ class HiringManager {
     }
 }
 
-
-final class AbstractFactory {
+final class AbstractFactory01 {
     func execute() {
 
         let hr = HiringManager()

@@ -1,5 +1,5 @@
 //
-//  chain-of-responsibility.swift
+//  chain-of-responsibility-01.swift
 //  swift-patterns
 //
 //  Created by Vasiliy Fedotov on 14.12.2024.
@@ -9,12 +9,12 @@ import Foundation
 
 /// Написано по статье https://tproger.ru/translations/design-patterns-simple-words-3#31
 
-protocol PaymentType {
+private protocol PaymentType {
     var name: String { get }
     var balance: Int { get }
 }
 
-extension PaymentType {
+private extension PaymentType {
     func payIfPossible(_ amount: Int) -> Bool {
         guard balance >= amount else {
             print("payment by \(name) isn't possible (\(balance) < \(amount))")
@@ -26,27 +26,27 @@ extension PaymentType {
     }
 }
 
-final class PaymentA: PaymentType {
+private final class PaymentA: PaymentType {
     var name: String { "card" }
     var balance: Int { 100 }
 }
 
-final class PaymentB: PaymentType {
+private final class PaymentB: PaymentType {
     var name: String { "cash" }
     var balance: Int { 200 }
 }
 
-final class PaymentC: PaymentType {
+private final class PaymentC: PaymentType {
     var name: String { "gold" }
     var balance: Int { 350 }
 }
 
-final class PaymentD: PaymentType {
+private final class PaymentD: PaymentType {
     var name: String { "antimatter" }
     var balance: Int { 2000 }
 }
 
-class PaymentChainring {
+private class PaymentChainring {
     let next: PaymentChainring?
     let payment: PaymentType
 
@@ -61,7 +61,7 @@ class PaymentChainring {
     }
 }
 
-final class ChainOfResponibility {
+final class ChainOfResponibility01 {
     func execute() {
         let paymentD = PaymentChainring(next: nil, payment: PaymentD())
         let paymentC = PaymentChainring(next: paymentD, payment: PaymentC())
