@@ -7,4 +7,4 @@
 
 import Foundation
 
-Command01().execute()
+Visitor01().execute()
