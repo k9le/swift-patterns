@@ -119,7 +119,7 @@ private class HiringManager {
     }
 }
 
-final class AbstractFactory01 {
+final class FabricMethod01 {
     func execute() {
 
         let hr = HiringManager()

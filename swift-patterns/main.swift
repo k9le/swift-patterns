@@ -7,4 +7,4 @@
 
 import Foundation
 
-Bridge01().execute()
+FabricMethod02().execute()
