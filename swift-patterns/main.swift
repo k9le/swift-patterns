@@ -7,4 +7,4 @@
 
 import Foundation
 
-FabricMethod02().execute()
+State01().execute()
