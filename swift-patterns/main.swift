@@ -7,4 +7,4 @@
 
 import Foundation
 
-State01().execute()
+Mediator01().execute()
